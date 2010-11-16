@@ -13,10 +13,10 @@ Capybara.app_host = TESTING_URL
 
 
 # Internet Explorer testing
-# usage: $ IE=true cucumber features
+# usage: $ REMOTE_BROWSER=IE cucumber features
 # see http://www.johng.co.uk/2010/10/13/run_capybara_and_cucumber_features_in_internet_explorer_on_remote_windows/
 # requires Java and selenium-server-standalone >= 2.0 (http://code.google.com/p/selenium/downloads/list)
-if ENV['IE'] then
+if ENV['REMOTE_BROWSER'] == 'IE' then
   Capybara.register_driver :selenium do |app|
     Capybara::Driver::Selenium.new(app,
       :browser => :remote,
