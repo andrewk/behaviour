@@ -4,7 +4,7 @@
 Stand-alone testing setup for web apps using selenium to drive browsers. Test your web site like a user, using a browser.
 No Ruby on Rails or non-essential components. 
 
-## Installation for noobs ##
+## Installation##
 
 *  [Install RVM (as a user)](http://rvm.beginrescueend.com/rvm/install/)
 
@@ -33,4 +33,10 @@ If you want to use this gemset and version of Ruby as your system default, run `
 
 ## Woot. Now What? ##
 
-Run `cucumber features`. You should see firefox pop up and various cool shit happen. Good Times™
+Run `cucumber features`. You should see Firefox pop up and various cool shit happen. Good Times™
+
+[Write Tests](https://github.com/jnicklas/capybara). Run them and watch them fail. Write code to make them pass. Repeat. Win.
+
+## Testing in Internet Explorer ##
+
+Testing in on a remote Windows machine is supported. See comments in features/support/env.rb for details.

@@ -1,13 +1,12 @@
 @demo
 Feature: To search the internet for kittens
-  As a noob
+  As a 7 year old child
   I need the Googles
           
-Scenario: Google searches also return images
+Scenario: Attempt "I'm Feeling Lucky" with no input
   Given I am on The Google
   Then I should see "Google"
-  When I fill in "q" with "omg kittens"
-  And I press "Google Search"
-  Then I should see "Images for omg kittens"
+  When I press "I'm Feeling Lucky"
+  Then I should see "I'm Feeling LuckyTM"
     
 
