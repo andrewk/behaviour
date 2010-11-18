@@ -3,6 +3,7 @@ require 'capybara/cucumber'
 require 'capybara/session'
 
 TESTING_URL = 'http://google.com/' # website you're testing
+REMOTE_IP = '192.168.61.129' # machine on your network you're using for browser testing (can be a Windows VM in OSX, etc)
 
 Capybara.default_selector = :css
 Capybara.default_driver = :selenium
@@ -12,15 +13,39 @@ Capybara.ignore_hidden_elements = true #Ignore hidden elements when testing, mak
 Capybara.app_host = TESTING_URL
 
 
-# Internet Explorer testing
-# usage: $ REMOTE_BROWSER=IE cucumber features
-# see http://www.johng.co.uk/2010/10/13/run_capybara_and_cucumber_features_in_internet_explorer_on_remote_windows/
-# requires Java and selenium-server-standalone >= 2.0 (http://code.google.com/p/selenium/downloads/list)
-if ENV['REMOTE_BROWSER'] == 'IE' then
-  Capybara.register_driver :selenium do |app|
-    Capybara::Driver::Selenium.new(app,
-      :browser => :remote,
-      :url => "http://192.168.61.129:4444/wd/hub", # change IP to your remote Windows machine (or VM)
-      :desired_capabilities => :internet_explorer)
-  end
+# usage: $ BROWSER=ie cucumber features
+# remote browsers require Java and selenium-server-standalone >= 2.0 on the remote browser host 
+# (http://code.google.com/p/selenium/downloads/list) 
+# java -jar selenium-server-standalone-2.0a7.jar
+
+case ENV['BROWSER']
+  when 'ff'
+    Capybara.register_driver :selenium do |app|
+      Capybara::Driver::Selenium.new(app,
+        :browser => :firefox
+    )
+    end
+
+  when 'chrome'
+    Capybara.register_driver :selenium do |app|
+      Capybara::Driver::Selenium.new(app,
+        :browser => :chrome
+    )
+    end
+    
+  when 'ie'
+    Capybara.register_driver :selenium do |app|
+      Capybara::Driver::Selenium.new(app,
+        :browser => :remote,
+        :url => "http://"+REMOTE_IP+":4444/wd/hub", # change IP to your remote Windows machine (or VM)
+        :desired_capabilities => :internet_explorer)
+    end
+    
+  when 'ff-win'
+    Capybara.register_driver :selenium do |app|
+      Capybara::Driver::Selenium.new(app,
+        :browser => :remote,
+        :url => "http://"+REMOTE_IP+":4444/wd/hub", # change IP to your remote Windows machine (or VM)
+        :desired_capabilities => :firefox)
+    end
 end
