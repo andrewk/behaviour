@@ -16,9 +16,6 @@ module WithinHelpers
 end
 World(WithinHelpers)
 
-Given /^(?:|I )am on (.+)$/ do |page_name|
-  visit path_to(page_name)
-end
 
 When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
@@ -36,11 +33,19 @@ When /^(?:|I )follow "([^"]*)"(?: within "([^"]*)")?$/ do |link, selector|
   end
 end
 
+When /^(?:|I )click "([^"]*)"(?: within "([^"]*)")?$/ do |link, selector|
+  with_scope(selector) do
+    click_link(link)
+  end
+end
+
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"(?: within "([^"]*)")?$/ do |field, value, selector|
   with_scope(selector) do
     fill_in(field, :with => value)
   end
 end
+
+
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|
   with_scope(selector) do
@@ -66,6 +71,11 @@ When /^(?:|I )fill in the following(?: within "([^"]*)")?:$/ do |selector, field
     end
   end
 end
+
+When /^(?:|I )submit the "([^"]*)" form$/ do |id|
+  find(:css, '#'+id+' input[type="submit"]').click
+end
+
 
 When /^(?:|I )select "([^"]*)" from "([^"]*)"(?: within "([^"]*)")?$/ do |value, field, selector|
   with_scope(selector) do
@@ -97,11 +107,27 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"(?: within "([^"]*)")?$/ do 
   end
 end
 
+Then /^(?:|I )should see the "([^"]*)" form$/ do |id|
+  page.should have_xpath('//form[@id="'+id+'"]')
+end
+
+Then /^(?:|I )should see the "([^"]*)" field$/ do |field|
+  page.should have_xpath('//input[@name="'+field+'"]')
+end
+
+Then /^(?:|I )should not see the "([^"]*)" field$/ do |field|
+  page.should_not have_xpath('//input[@name="'+field+'"]')
+end
+
 Then /^(?:|I )should see JSON:$/ do |expected_json|
   require 'json'
   expected = JSON.pretty_generate(JSON.parse(expected_json))
   actual   = JSON.pretty_generate(JSON.parse(response.body))
   expected.should == actual
+end
+
+Then /^(?:|I )should see the "([^"]*)" element$/ do |id|
+  find(:css, '#'+id).visible?
 end
 
 Then /^(?:|I )should see "([^"]*)"(?: within "([^"]*)")?$/ do |text, selector|
@@ -146,6 +172,15 @@ Then /^(?:|I )should not see \/([^\/]*)\/(?: within "([^"]*)")?$/ do |regexp, se
   end
 end
 
+Then /^the "([^"]*)" field(?: within "([^"]*)")? should be empty$/ do |field, selector|
+  with_scope(selector) do
+    field = find_field(field)
+    field_value = (field.tag_name == 'textarea') ? field.text : field.value
+    field_value.empty?
+  end
+end
+
+
 Then /^the "([^"]*)" field(?: within "([^"]*)")? should contain "([^"]*)"$/ do |field, selector, value|
   with_scope(selector) do
     field = find_field(field)
@@ -181,6 +216,17 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should be checked$/ do |labe
   end
 end
 
+Then /^the "([^"]*)" radio button(?: within "([^"]*)")? should be selected$/ do |label, selector|
+  with_scope(selector) do
+    field_checked = find_field(label)['checked']
+    if field_checked.respond_to? :should
+      field_checked.should be_true
+    else
+      assert field_checked
+    end
+  end
+end
+
 Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |label, selector|
   with_scope(selector) do
     field_checked = find_field(label)['checked']
@@ -191,6 +237,11 @@ Then /^the "([^"]*)" checkbox(?: within "([^"]*)")? should not be checked$/ do |
     end
   end
 end
+
+Then /^"([^\"]*)" should( not)? be disabled$/ do |label, negate|
+  !!find_field(label)[:disabled].should == !negate 
+end
+
  
 Then /^(?:|I )should be on (.+)$/ do |page_name|
   current_path = URI.parse(current_url).path
@@ -214,6 +265,11 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   end
 end
 
+When /^I reload the page$/ do
+  visit current_path
+end
+
 Then /^show me the page$/ do
   save_and_open_page
 end
+
