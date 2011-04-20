@@ -41,5 +41,22 @@ Feature: Users can sign up
 		
 		When I click the verification link
 		Then I should see no errors
+		Then I should be logged in
 		Then I should see "Your email has been confirmed"
+		Then I should see "Log Out"
+		
+		When I click "Log Out"
+		Then I should see no errors
+		Then I should not be logged in
+		Then I should see "Sign In" within "#userStatus a"
+		
+		When I click "Sign In"
+		Then I should see no errors
+		Then I should not be logged in
+		Then I should see the "loginForm" form
+		When I fill in "Email" with the random email address
+		When I fill in "Password" with "fu11y$ick"
+		
+		When I press "Login"
+		Then I should see no errors
 		Then I should be logged in

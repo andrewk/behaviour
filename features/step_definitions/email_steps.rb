@@ -23,8 +23,17 @@ When /^(?:|I )click the verification link$/ do
 	visit url
 end
 
+the_random_email_address = nil
+
 When /^(?:|I )fill in "([^"]*)" with a random email address(?: within "([^"]*)")?$/ do |field, selector|
+	the_random_email_address = "behaviouraltest+" + rand().to_s + "@wavedigital.com.au"
 	with_scope(selector) do
-		fill_in(field, :with => "behaviouraltest+" + rand().to_s + "@wavedigital.com.au")
+		fill_in(field, :with => the_random_email_address)
+	end
+end
+
+When /^(?:|I )fill in "([^"]*)" with the random email address(?: within "([^"]*)")?$/ do |field, selector|
+	with_scope(selector) do
+		fill_in(field, :with => the_random_email_address)
 	end
 end
