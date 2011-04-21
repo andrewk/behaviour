@@ -2,7 +2,6 @@ require 'cucumber/formatter/unicode'
 require 'capybara/cucumber'
 require 'capybara/session'
 
-TESTING_URL = 'http://google.com/' # website you're testing
 REMOTE_IP = '192.168.61.129' # machine on your network you're using for browser testing (can be a Windows VM in OSX, etc)
 
 Capybara.default_selector = :css
@@ -10,7 +9,6 @@ Capybara.default_driver = :selenium
 Capybara.default_wait_time = 2 #When we testing AJAX, we can set a default wait time
 Capybara.run_server = false #Whether start server when testing
 Capybara.ignore_hidden_elements = true #Ignore hidden elements when testing, make helpful when you hide or show elements using javascript
-Capybara.app_host = TESTING_URL
 
 
 # usage: $ BROWSER=ie cucumber features

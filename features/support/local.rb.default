@@ -1,0 +1,6 @@
+TESTING_URL = 'http://unbooked.vm'
+
+VENDOR_USERNAME = 'someone+vendor@gmail.com'
+VENDOR_PASSWORD = 'password'
+
+Capybara.app_host = TESTING_URL # Do not delete
