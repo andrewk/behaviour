@@ -8,8 +8,15 @@ module NavigationHelpers
   def path_to(page_name)
     case page_name
     
-    when /homepage/
-      'http://unbooked.craiga.vm/'
+	when /homepage/
+		TESTING_URL
+	when /log in/
+		TESTING_URL + '/login'
+	when /vendor registration/
+		TESTING_URL + '/info/join'
+	when /vendor services list/
+		TESTING_URL + '/services'
+	
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
