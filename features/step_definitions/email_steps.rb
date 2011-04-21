@@ -23,6 +23,18 @@ When /^(?:|I )click the verification link in "([^"]*)"$/ do |subject|
 	visit url
 end
 
+Then /^(?:|I )delete all emails with the subject "([^"]*)"$/ do |subject|
+	imap = Net::IMAP.new("imap.gmail.com", 993, true)
+	imap.login("behaviouraltest@wavedigital.com.au", "fu11y$ick")
+	imap.select("INBOX")
+	imap.search(["SUBJECT", subject]).each do |messageid|
+		imap.store(messageid, "+FLAGS", [:Deleted])
+	end
+	imap.logout()
+	imap.disconnect() 
+end
+
+
 the_random_email_address = nil
 
 When /^(?:|I )fill in "([^"]*)" with a random email address(?: within "([^"]*)")?$/ do |field, selector|

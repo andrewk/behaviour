@@ -21,6 +21,7 @@ Feature: Users can sign up
 		When I click "Register my business"
 		Then I should see no errors
 		Then I should not be logged in
+		Then I should see "Register"
 		Then I should see the "vendorJoinForm" form
 		When I fill in "Email" with a random email address
 		When I fill in "Password" with a random password
@@ -40,8 +41,10 @@ Feature: Users can sign up
 		Then I should get an email with the subject "Unbooked Vendor Registration"
 		
 		When I click the verification link in "Unbooked Vendor Registration"
+		# Then I delete all emails with the subject "Unbooked Vendor Registration"
 		Then I should see no errors
 		Then I should be logged in
+		Then I should not see "You have already been verified"
 		Then I should see "Your email has been confirmed"
 		Then I should see "Log Out"
 		
@@ -92,8 +95,10 @@ Feature: Users can sign up
 		Then I should get an email with the subject "Unbooked User Registration"
 
 		When I click the verification link in "Unbooked User Registration"
+		# Then I delete all emails with the subject "Unbooked User Registration"
 		Then I should see no errors
 		Then I should be logged in
+		Then I should not see "You have already been verified"
 		Then I should see "Log Out"
 
 		When I click "Log Out"
