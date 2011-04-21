@@ -41,7 +41,7 @@ Feature: Users can sign up
 		Then I should get an email with the subject "Unbooked Vendor Registration"
 		
 		When I click the verification link in "Unbooked Vendor Registration"
-		# Then I delete all emails with the subject "Unbooked Vendor Registration"
+		Then I delete all emails with the subject "Unbooked Vendor Registration"
 		Then I should see no errors
 		Then I should be logged in
 		Then I should not see "You have already been verified"
@@ -95,7 +95,7 @@ Feature: Users can sign up
 		Then I should get an email with the subject "Unbooked User Registration"
 
 		When I click the verification link in "Unbooked User Registration"
-		# Then I delete all emails with the subject "Unbooked User Registration"
+		Then I delete all emails with the subject "Unbooked User Registration"
 		Then I should see no errors
 		Then I should be logged in
 		Then I should not see "You have already been verified"
