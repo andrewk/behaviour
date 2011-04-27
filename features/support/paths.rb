@@ -16,6 +16,8 @@ module NavigationHelpers
 		TESTING_URL + '/info/join'
 	when /vendor services list/
 		TESTING_URL + '/services'
+	when /vendor locations list/
+		TESTING_URL + '/locations'
 	
 
     # Add more mappings here.
