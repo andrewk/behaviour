@@ -35,19 +35,6 @@ When /^(?:|I )fill in "([^"]*)" with the random password(?: within "([^"]*)")?$/
 	end
 end
 
-When /^I fill in "([^"]*)" with vendor username(?: within "([^"]*)")?$/ do |field, selector|
-	with_scope(selector) do
-		fill_in(field, :with => VENDOR_USERNAME)
-	end
-end
-
-When /^I fill in "([^"]*)" with vendor password(?: within "([^"]*)")?$/ do |field, selector|
-	with_scope(selector) do
-		fill_in(field, :with => VENDOR_PASSWORD)
-	end
-end
-
-
 When /^(?:|I )register and log in as a new vendor$/ do
 	steps %Q{
 		When I go to vendor registration
@@ -71,8 +58,9 @@ end
 When /^(?:|I )log in as a vendor$/ do
 	steps %Q{
 		When I go to log in
-		When I fill in "Email" with vendor username
-		When I fill in "Password" with vendor password
+		When I fill in the following:
+			| Email    | behaviouraltest+vendor@wavedigital.com.au |
+			| Password | password                                  |
 		When I press "Login"
 		Then I should be logged in
 	}

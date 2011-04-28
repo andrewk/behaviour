@@ -3,6 +3,8 @@ Feature: Users can sign up
 
 	Scenario: I want to register as a business
 		
+		When I start a behavioural test
+		
 		When I go to the homepage
 		Then I should see no errors
 		Then I should not be logged in
@@ -65,6 +67,8 @@ Feature: Users can sign up
 		Then I should be logged in
 
 	Scenario: I want to register as a customer
+
+		When I start a behavioural test
 
 		When I go to the homepage
 		Then I should see no errors

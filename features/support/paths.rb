@@ -18,7 +18,8 @@ module NavigationHelpers
 		TESTING_URL + '/services'
 	when /vendor locations list/
 		TESTING_URL + '/locations'
-	
+	when /fixture reset/
+		TESTING_URL + '/behaviouraltest'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -3,6 +3,8 @@ Feature: Users can manage services
 
 	Scenario: I want to set up a new service
 		
+		When I start a behavioural test
+		
 		When I register and log in as a new vendor
 		Then I should see "For Business"
 		
@@ -40,7 +42,9 @@ Feature: Users can manage services
 		Then I should see "Edit"
 		
 	Scenario: I want to set up another service
-
+		
+		When I start a behavioural test
+		
 		When I log in as a vendor
 		
 		When I go to vendor services list
@@ -66,6 +70,8 @@ Feature: Users can manage services
 		Then I should see "$4000.00"
 		
 	Scenario: I want to edit a service
+		
+		When I start a behavioural test
 		
 		When I log in as a vendor
 		
@@ -93,6 +99,8 @@ Feature: Users can manage services
 		Then I should see "$8000.00"
 		
 	Scenario: I want to delete a service
+		
+		When I start a behavioural test
 		
 		When I log in as a vendor
 		

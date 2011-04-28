@@ -3,6 +3,8 @@ Feature: Users can manage locations
 
 	Scenario: I want to set up a new location
 		
+		When I start a behavioural test
+		
 		When I register and log in as a new vendor
 		Then I should see "For Business"
 		
@@ -32,7 +34,9 @@ Feature: Users can manage locations
 		Then I should see "Collingwood"
 		
 	Scenario: I want to set up another location
-	
+		
+		When I start a behavioural test
+		
 		When I log in as a vendor
 		
 		When I go to vendor locations list
@@ -50,6 +54,8 @@ Feature: Users can manage locations
 		Then I should see "Osaka"
 		
 	Scenario: I want to edit a location
+		
+		When I start a behavioural test
 		
 		When I log in as a vendor
 		
@@ -69,6 +75,8 @@ Feature: Users can manage locations
 		Then I should see "New York"
 		
 	Scenario: I want to delete a location
+		
+		When I start a behavioural test
 		
 		When I log in as a vendor
 		
