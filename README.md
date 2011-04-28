@@ -13,6 +13,16 @@ Configuration of Unbooked
 
 You'll need to set `allow-behavioural-tests` to `true` in Unbooked's configuration before running these tests. Without this configuration the tests won't be able to load their fixtures.
 
+Configuration of Unbooked Server
+--------------------------------
+
+Apache will need permission to rebuild the Sphinx index. To do this, you'll need to add the Apache user (usually `www-data`) to `/etc/sudoers`:
+
+	# Let web server rebuild Sphinx index
+	www-data ALL=(root)NOPASSWD:/usr/local/bin/indexer --rotate --all
+
+**Never, ever do this production.** It's a nasty hack.
+
 Running the Tests
 -----------------
 
