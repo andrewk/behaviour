@@ -34,10 +34,31 @@ Feature: Things can be found via search
 		When I press "Go"
 		Then I should see no errors
 		Then I should see "Search Results"
+		Then I should see "iOS Development"
+
+		When I click "iOS Development"
+		Then I should see no errors
+		Then I should see "Wave Digital"
+		Then I should see "iOS Development"
+		
+	Scenario: Searching for a service in a location
+
+		When I start a behavioural test
+
+		When I go to the homepage
+		Then I should see no errors
+		Then I should see the "searchForm" form
+
+		When I fill in the following:
+			| q | development melbourne |
+		When I press "Go"
+		Then I should see no errors
+		Then I should see "Search Results"
 		Then I should see "Wave Digital"
 		Then I should not see "SitePoint"
+		Then I should see "Web Development"
 
 		When I click "Wave Digital"
 		Then I should see no errors
 		Then I should see "Wave Digital"
-	
+
