@@ -11,7 +11,7 @@ Copy `features/support/local.rb.default` to `features/support/local.rb` and edit
 Configuration of Unbooked
 -------------------------
 
-You'll need to set `allow-behavioural-tests` to `true` in Unbooked's configuration before running these tests. Without this configuration the tests won't be able to load their fixtures.
+You'll need to set `allow-behavioural-test` to `1` in Unbooked's configuration before running these tests. Without this configuration the tests won't be able to load their fixtures.
 
 Configuration of Unbooked Server
 --------------------------------
