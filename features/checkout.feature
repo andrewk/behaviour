@@ -1,5 +1,7 @@
 Feature: Streamlined Checkout Works
 
+	# Not Logged in User
+
 	Scenario: I can make my way to Checkout without being logged in
 		When I start a behavioural test
 
@@ -33,6 +35,28 @@ Feature: Streamlined Checkout Works
 		Then I should see "Sat 02 Apr, 11:00am" within "#supportingContentCol"
 		
 		Then I should see "Account Login"
+		
+	Scenario: I cannot make a Purchase without entering any details
+		When I start a behavioural test
+		When I check out a listing
+		Then I press "Pay Now"
+
+		Then I should see "Payment Details"
+		Then I should see "Account Login"
+		Then I should see "Payment Method is required" within "#mainContentSplit form"
+		Then I should see "Email is required" within "#mainContentSplit form"
+		Then I should see "Password is required" within "#mainContentSplit form"
+		Then I should see "First Name is required" within "#mainContentSplit form"
+		Then I should see "Last Name is required" within "#mainContentSplit form"
+		Then I should see "Phone Number is required" within "#mainContentSplit form"
+		
+		Then the "Email" field should contain ""
+		Then the "Password" field should contain ""
+		Then the "First Name" field should contain ""
+		Then the "Last Name" field should contain ""
+		Then the "Phone" field should contain ""
+
+	# Logged in User
 
 	Scenario: I can make my way to Checkout when logged in
 		When I start a behavioural test
@@ -67,22 +91,8 @@ Feature: Streamlined Checkout Works
 		Then I should see "Sat 02 Apr, 11:00am" within "#supportingContentCol"
 		
 		Then I should not see "Account Login"
-		
-	Scenario: I make a Purchase without entering any details
-		When I start a behavioural test
-		When I check out a listing
-		Then I press "Pay Now"
-		
-		Then I should see "Payment Details"
-		Then I should see "Account Login"
-		Then I should see "Payment Method is required" within "#mainContentSplit form"
-		Then I should see "Email is required" within "#mainContentSplit form"
-		Then I should see "Password is required" within "#mainContentSplit form"
-		Then I should see "First Name is required" within "#mainContentSplit form"
-		Then I should see "Last Name is required" within "#mainContentSplit form"
-		Then I should see "Phone Number is required" within "#mainContentSplit form"
-		
-	Scenario: I make a Purchase without entering any details while logged in
+
+	Scenario: I cannot make a Purchase without entering any details when logged in
 		When I start a behavioural test
 		When I log in as a vendor
 		When I check out a listing
@@ -96,4 +106,8 @@ Feature: Streamlined Checkout Works
 		Then I should not see "First Name is required" within "#mainContentSplit form"
 		Then I should not see "Last Name is required" within "#mainContentSplit form"
 		Then I should see "Phone Number is required" within "#mainContentSplit form"
+		
+		Then the "First Name" field should contain "Jonathan"
+		Then the "Last Name" field should contain "Christmas"
+		Then the "Phone" field should contain ""
 		
