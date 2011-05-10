@@ -8,3 +8,8 @@ When /^(?:|I )start a behavioural test$/ do
 		Then I should see "Fixtures have been imported."
 	}
 end
+
+Then /^(?:|I )Debug$/ do
+	print "Press Return to continue"
+	STDIN.getc
+end
