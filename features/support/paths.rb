@@ -20,6 +20,10 @@ module NavigationHelpers
 		TESTING_URL + '/locations'
 	when /fixture reset/
 		TESTING_URL + '/behaviouraltest'
+    when /sitepoint vendor/
+        TESTING_URL + '/sitepoint'
+	when /paypal developer/
+		'http://developer.paypal.com'
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

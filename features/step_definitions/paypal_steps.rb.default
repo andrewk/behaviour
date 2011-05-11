@@ -1,0 +1,20 @@
+When /^(?:|I )start a paypal test$/ do
+	steps %Q{
+		When I go to paypal developer
+		When I fill in the following:
+			| Email Address | PAYPAL_DEVELOPER_USERNAME |
+			| Password | PAYPAL_DEVELOPER_PASSWORD |
+		When I press "Log In"
+		When I sign into my test account
+	}
+end
+
+When /^(?:|I )sign into my test account$/ do
+	# e.g https://www.sandbox.paypal.com/cgi-bin/webscr?_cmd=login_run&login_email=ubtest_1305006394_per@sitepoint.com
+	visit 'https://www.sandbox.paypal.com/cgi-bin/webscr?_cmd=login_run&login_email=PAYPAL_TEST_USERNAME'
+	steps %Q{
+		When I fill in the following:
+			| login_password | PAYPAL_TEST_PASSWORD |
+		When I press "Log In"
+	}
+end

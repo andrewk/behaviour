@@ -7,3 +7,9 @@ When /^(?:|I )check out a listing$/ do
 		Then I should see "Payment Details"
 	}
 end
+
+Then /^(?:|I )Display "([^\"]*)"$/ do |message|
+	print message
+	print "Press Return to continue"
+	STDIN.getc
+end

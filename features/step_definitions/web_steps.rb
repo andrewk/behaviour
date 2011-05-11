@@ -265,6 +265,14 @@ Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
   end
 end
 
+When /^I wait until "([^"]*)" is visible$/ do |selector|
+	# page.has_css?("#{selector}", :visible => true)
+	# wait_until{ page.has_content?('continue')}
+	# TODO Make something that actually works
+	puts "Just click the %s button and Press Enter to Continue\n" % selector
+	STDIN.getc
+end
+
 When /^I reload the page$/ do
   visit current_path
 end

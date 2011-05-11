@@ -96,7 +96,6 @@ Feature: Streamlined Checkout Works
 		When I start a behavioural test
 		When I log in as a vendor
 		When I check out a listing
-		Then I press "Pay Now"
 		
 		Then I should see "Payment Details"
 		Then I should not see "Account Login"
@@ -110,4 +109,53 @@ Feature: Streamlined Checkout Works
 		Then the "First Name" field should contain "Jonathan"
 		Then the "Last Name" field should contain "Christmas"
 		Then the "Phone" field should contain ""
+	
+	@javascript
+	Scenario: I can make a PayPal purchase when logged in
+		When I start a paypal test
+		When I start a behavioural test
 		
+		When I log in as a vendor
+		When I check out a listing
+		
+		When I choose "Pay by PayPal"
+		When I fill in the following:
+			| Phone | 5012 3456 |
+		When I press "Pay Now"
+		Then I should see no errors
+		
+		Then I should see "Payment Method and Billing Information"
+		
+		When I press "Make PayPal Purchase"
+		Then I should see "Choose a way to pay"
+
+		When I fill in the following:
+			# | login_email | ubtest_1305006394_per@sitepoint.com |
+			| login_password | 1305006394 |
+		When I press "Log In"
+		Then I should see "Review your information"
+
+		When I press "Pay Now"
+		Then I should see "Thanks for your order"
+
+		When I press "Return to Ben Morrall's Test Store"
+		Then I should see "You Made A Payment"
+		Then I should see "Your payment for $2.50 AUD has been completed"
+
+		# This will cause a dialog to appear if not running on secure test server
+
+		Then I should be logged in
+		Then I should see "Congratulations"
+		Then I should see "CHRISTMAS, Jonathan"
+		Then I should see "behaviouraltest+vendor@wavedigital.com.au"
+		Then I should see "SitePoint"
+		Then I should see "Advertisting on home page"
+		Then I should see "48 Cambridge Street"
+		Then I should see "Collingwood"
+		Then I should see "VIC"
+		Then I should see "3066"
+		Then I should see "AU"
+		Then I should see "$2.50"
+		Then I should see "Fri 01 Apr, 11:00am"
+		Then I should see "Sat 02 Apr, 11:00am"
+		Then I should see "Print"
