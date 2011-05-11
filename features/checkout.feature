@@ -111,7 +111,6 @@ Feature: Streamlined Checkout Works
 		Then the "Last Name" field should contain "Christmas"
 		Then the "Phone" field should contain ""
 	
-	@javascript
 	Scenario: I can make a PayPal purchase when logged in
 		When I start a paypal test
 		When I start a behavioural test
@@ -130,18 +129,7 @@ Feature: Streamlined Checkout Works
 		When I press "Make PayPal Purchase"
 		Then I should see "Choose a way to pay"
 
-		When I fill in the following:
-			# | login_email | ubtest_1305006394_per@sitepoint.com |
-			| login_password | 1305006394 |
-		When I press "Log In"
-		Then I should see "Review your information"
-
-		When I press "Pay Now"
-		Then I should see "Thanks for your order"
-
-		When I press "Return to Ben Morrall's Test Store"
-		Then I should see "You Made A Payment"
-		Then I should see "Your payment for $2.50 AUD has been completed"
+		When I complete a PayPal purchase
 
 		# This will cause a dialog to appear if not running on secure test server
 

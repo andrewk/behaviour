@@ -18,3 +18,19 @@ When /^(?:|I )sign into my test account$/ do
 		When I press "Log In"
 	}
 end
+
+When /^(?:|I )complete a PayPal purchase$/ do
+	# | login_email | ubtest_1305006394_per@sitepoint.com |
+	# Should be filled in during setup
+	steps %Q{
+		When I fill in the following:
+			| login_password | PAYPAL_TEST_PASSWORD |
+		When I press "Log In"
+		Then I should see "Review your information"
+		When I press "Pay Now"
+		Then I should see "Thanks for your order"
+		When I press "Return to Ben Morrall's Test Store"
+		Then I should see "You Made A Payment"
+		Then I should see "Your payment for $2.50 AUD has been completed"
+	}
+end
