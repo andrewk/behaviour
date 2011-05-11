@@ -98,6 +98,24 @@ Feature: Streamlined Checkout Works
 		Then I should see "Sat 02 Apr, 11:00am"
 		Then I should see "Print"
 
+	Scenario: I cannot steal another account
+		When I start a behavioural test
+
+		When I check out a listing
+		Then I should not be logged in
+
+		When I choose "Pay by PayPal"
+		When I fill in the following:
+			| First Name | Test |
+			| Last Name | User |
+			| Password | Sekrit |
+			| Email | behaviouraltest+vendor@wavedigital.com.au |
+			| Phone | 5012 3456 |
+		When I press "Pay Now"
+		
+		Then I should not be logged in
+		Then I should see "Email address already in use."
+
 	# Logged in User
 
 	Scenario: I can make my way to Checkout when logged in
