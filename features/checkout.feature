@@ -96,6 +96,7 @@ Feature: Streamlined Checkout Works
 		When I start a behavioural test
 		When I log in as a vendor
 		When I check out a listing
+		Then I press "Pay Now"
 		
 		Then I should see "Payment Details"
 		Then I should not see "Account Login"
