@@ -35,6 +35,12 @@ When /^(?:|I )complete a PayPal purchase$/ do
 	}
 end
 
+When /^(?:|I )cancel a PayPal purchase$/ do
+	steps %Q{
+		Then I press "Cancel and return to Ben Morrall's Test Store."
+	}
+end
+
 When /^(?:|I )end a paypal test$/ do
 	steps %Q{
 		When I go to paypal developer
