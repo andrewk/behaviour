@@ -115,6 +115,28 @@ Feature: Streamlined Checkout Works
 		
 		Then I should not be logged in
 		Then I should see "Email address already in use."
+		
+	Scenario: I can log in with the Checkout form
+		When I start a behavioural test
+		When I check out a listing
+		Then I should not be logged in
+		Then I should see "Account Login" within "#supportingContentCol"
+		Then I should see "Email" within "#mainContentSplit"
+		Then I should see "Password" within "#mainContentSplit"
+		Then the "First Name" field should contain ""
+		Then the "Last Name" field should contain ""
+	
+		When I fill in the following within "#supportingContentCol":
+			| Email | behaviouraltest+vendor@wavedigital.com.au |
+			| Password | password |
+
+		When I press "Login"
+		Then I should be logged in
+		Then I should not see "Account Login" within "#supportingContentCol"
+		Then I should not see "Email" within "#mainContentSplit"
+		Then I should not see "Password" within "#mainContentSplit"
+		Then the "First Name" field should contain "Jonathan"
+		Then the "Last Name" field should contain "Christmas"
 
 	# Logged in User
 
