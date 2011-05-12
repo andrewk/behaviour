@@ -34,3 +34,10 @@ When /^(?:|I )complete a PayPal purchase$/ do
 		Then I should see "Your payment for $2.50 AUD has been completed"
 	}
 end
+
+When /^(?:|I )end a paypal test$/ do
+	steps %Q{
+		When I go to paypal developer
+		When I click "Log Out"
+	}
+end

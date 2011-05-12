@@ -97,6 +97,8 @@ Feature: Streamlined Checkout Works
 		Then I should see "Fri 01 Apr, 11:00am"
 		Then I should see "Sat 02 Apr, 11:00am"
 		Then I should see "Print"
+		
+		When I end a paypal test
 
 	Scenario: I cannot steal another account
 		When I start a behavioural test
@@ -324,8 +326,11 @@ Feature: Streamlined Checkout Works
 
 		# This will cause a dialog to appear if not running on secure test server
 
+		Then I Debug
+
 		Then I should be logged in
 		Then I should see "Congratulations"
+		Then I should see "Your transaction has been completed, a confirmation of your purchase has been emailed to you"
 		Then I should see "CHRISTMAS, Jonathan"
 		Then I should see "behaviouraltest+vendor@wavedigital.com.au"
 		Then I should see "SitePoint"
@@ -339,6 +344,8 @@ Feature: Streamlined Checkout Works
 		Then I should see "Fri 01 Apr, 11:00am"
 		Then I should see "Sat 02 Apr, 11:00am"
 		Then I should see "Print"
+		
+		When I end a paypal test
 
 	Scenario: I can make a Credit Card Purchase when logged in
 		When I start a behavioural test
