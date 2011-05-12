@@ -2,4 +2,3 @@
 .rvmrc
 .DS_Store?
 features/support/local.rb
-features/step_definitions/paypal_steps.rb
