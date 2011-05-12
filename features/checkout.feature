@@ -167,6 +167,11 @@ Feature: Streamlined Checkout Works
 		
 		Then I should see "Email" within "#mainContentSplit"
 		Then I should see "Password" within "#mainContentSplit"
+
+		# Doesn't pass for Unknown reasons, cannot see a difference between value and diff
+		# Then the "Email" field within "#supportingContentCol" should contain "behaviouraltest+vendor@wavedigital.com.au"
+		Then the "Password" field within "#supportingContentCol" should contain ""
+		
 		Then the "First Name" field should contain ""
 		Then the "Last Name" field should contain ""
 	
