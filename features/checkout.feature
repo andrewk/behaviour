@@ -340,6 +340,44 @@ Feature: Streamlined Checkout Works
 		Then I should see "Sat 02 Apr, 11:00am"
 		Then I should see "Print"
 
+	Scenario: I can make a Credit Card Purchase when logged in
+		When I start a behavioural test
+		When I log in as a vendor
+		When I check out a listing
+
+		When choose "Pay by Credit Card"
+		When I fill in the following:
+			| Phone | 50123456 |
+			| Card Number | 4444333322221111 |
+			| Name on Card | Mr John Citizen |
+			| paymentDetails_cvcNumber | 111 |
+			| Billing Address | 1234 Blargh St |
+			| City | Derpington |
+			| Post Code | 3011 |
+			| State | NSW |
+		When I select "11" from "Expiry Month"
+		When I select "11" from "Expiry Year"
+		When I select "Australia" from "Country"
+
+		When I press "Pay Now"
+		
+		Then I should be logged in
+		Then I should see "Congratulations"
+		Then I should see "Your transaction has been completed, a confirmation of your purchase has been emailed to you."
+		Then I should see "CHRISTMAS, Jonathan"
+		Then I should see "behaviouraltest+vendor@wavedigital.com.au"
+		Then I should see "SitePoint"
+		Then I should see "Advertisting on home page"
+		Then I should see "48 Cambridge Street"
+		Then I should see "Collingwood"
+		Then I should see "VIC"
+		Then I should see "3066"
+		Then I should see "AU"
+		Then I should see "$2.50"
+		Then I should see "Fri 01 Apr, 11:00am"
+		Then I should see "Sat 02 Apr, 11:00am"
+		Then I should see "Print"
+
 	Scenario: I will not lose my Purchase when I reload
 		When I start a behavioural test
 		When I log in as a vendor
