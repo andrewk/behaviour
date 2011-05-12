@@ -137,6 +137,36 @@ Feature: Streamlined Checkout Works
 		Then I should not see "Password" within "#mainContentSplit"
 		Then the "First Name" field should contain "Jonathan"
 		Then the "Last Name" field should contain "Christmas"
+		
+	Scenario: I cannot log in with incorrect details
+		When I start a behavioural test
+		When I check out a listing
+		Then I should not be logged in
+		Then I should see "Account Login" within "#supportingContentCol"
+		Then I should see "Email" within "#mainContentSplit"
+		Then I should see "Password" within "#mainContentSplit"
+		Then the "First Name" field should contain ""
+		Then the "Last Name" field should contain ""
+
+		When I fill in the following within "#supportingContentCol":
+			| Email | behaviouraltest+vendor@wavedigital.com.au |
+			| Password | obviously_wrong |
+		When I press "Login"
+		Then I should not be logged in
+		
+		Then I should see "Account Login" within "#supportingContentCol"
+		Then I should see "Password does not match the email address. Please check your details and try again." within "#supportingContentCol"
+		Then I should not see "Payment Method is required" within "#mainContentSplit form"
+		Then I should not see "Email is required" within "#mainContentSplit form"
+		Then I should not see "Password is required" within "#mainContentSplit form"
+		Then I should not see "First Name is required" within "#mainContentSplit form"
+		Then I should not see "Last Name is required" within "#mainContentSplit form"
+		Then I should not see "Phone Number is required" within "#mainContentSplit form"
+		
+		Then I should see "Email" within "#mainContentSplit"
+		Then I should see "Password" within "#mainContentSplit"
+		Then the "First Name" field should contain ""
+		Then the "Last Name" field should contain ""
 	
 	Scenario: I can log in with my new account
 		When I start a behavioural test
