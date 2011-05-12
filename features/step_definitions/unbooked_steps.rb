@@ -13,3 +13,9 @@ Then /^(?:|I )Debug$/ do
 	print "Press Return to continue"
 	STDIN.getc
 end
+
+Then /^(?:|I )Display "([^\"]*)"$/ do |message|
+	print message
+	print "Press Return to continue"
+	STDIN.getc
+end
