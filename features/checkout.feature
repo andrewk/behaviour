@@ -200,6 +200,52 @@ Feature: Streamlined Checkout Works
 		Then the "Last name" field should contain "User"
 		Then the "Email" field should contain "test.user@wavedigital.com"
 		Then the "Phone number" field should contain "5012 3456"
+		
+	Scenario: I will not lose my Purchase when I reload
+		When I start a behavioural test
+		When I check out a listing
+		
+		When I reload the page
+		Then I should not be logged in
+		Then I should see "Payment Details"
+		
+		Then the "Email" field should contain ""
+		Then the "Password" field should contain ""
+		Then the "First Name" field should contain ""
+		Then the "Last Name" field should contain ""
+		Then the "Phone" field should contain ""
+		Then I should see "Order Summary" within "#supportingContentCol"
+		Then I should see "Advertisting on home page" within "#supportingContentCol"
+		Then I should see "SitePoint" within "#supportingContentCol"
+		Then I should see "Fri 01 Apr, 11:00am" within "#supportingContentCol"
+		Then I should see "Sat 02 Apr, 11:00am" within "#supportingContentCol"
+		Then I should see "Account Login"
+		
+	Scenario: I will not lose my Purchase when I log in and reload
+		When I start a behavioural test
+		When I check out a listing
+
+		When I fill in the following within "#supportingContentCol":
+			| Email | behaviouraltest+vendor@wavedigital.com.au |
+			| Password | password |
+		When I press "Login"
+		Then I should be logged in
+
+		When I reload the page
+		
+		Then I should be logged in
+		Then I should see "Payment Details"
+
+		Then the "First Name" field should contain "Jonathan"
+		Then the "Last Name" field should contain "Christmas"
+		Then the "Phone" field should contain ""
+		Then I should see "Order Summary" within "#supportingContentCol"
+		Then I should see "Advertisting on home page" within "#supportingContentCol"
+		Then I should see "SitePoint" within "#supportingContentCol"
+		Then I should see "Fri 01 Apr, 11:00am" within "#supportingContentCol"
+		Then I should see "Sat 02 Apr, 11:00am" within "#supportingContentCol"
+		Then I should not see "Account Login"
+		
 
 	# Logged in User
 
