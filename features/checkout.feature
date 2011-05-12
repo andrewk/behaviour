@@ -73,7 +73,7 @@ Feature: Streamlined Checkout Works
 		When I press "Pay Now"
 		Then I should see no errors
 		Then I should be logged in
-		Then I should see "Payment Method and Billing Information"
+		Then I should see "PayPal Purchase"
 
 		When I press "Make PayPal Purchase"
 		Then I should see "Choose a way to pay"
@@ -117,7 +117,7 @@ Feature: Streamlined Checkout Works
 		When I press "Pay Now"
 		Then I should see no errors
 		Then I should be logged in
-		Then I should see "Payment Method and Billing Information"
+		Then I should see "PayPal Purchase"
 
 		When I press "Make PayPal Purchase"
 		Then I should see "Choose a way to pay"
@@ -125,6 +125,7 @@ Feature: Streamlined Checkout Works
 		When I cancel a PayPal purchase
 		Then I should see "Payment Details"
 		Then I should see "You cancelled your PayPal purchase, Please try again"
+		Then I should be logged in
 
 		When I end a paypal test
 
@@ -350,7 +351,7 @@ Feature: Streamlined Checkout Works
 		When I press "Pay Now"
 		Then I should see no errors
 		
-		Then I should see "Payment Method and Billing Information"
+		Then I should see "PayPal Purchase"
 		
 		When I press "Make PayPal Purchase"
 		Then I should see "Choose a way to pay"
