@@ -137,6 +137,39 @@ Feature: Streamlined Checkout Works
 		Then I should not see "Password" within "#mainContentSplit"
 		Then the "First Name" field should contain "Jonathan"
 		Then the "Last Name" field should contain "Christmas"
+	
+	Scenario: I can log in with my new account
+		When I start a behavioural test
+
+		When I check out a listing
+		Then I should not be logged in
+
+		When I choose "Pay by PayPal"
+		When I fill in the following:
+			| Email | test.user@wavedigital.com |
+			| Password | Sekrit |
+			| First Name | Test |
+			| Last Name | User |
+			| Phone | 5012 3456 |
+		When I press "Pay Now"
+		Then I should see no errors
+		Then I should be logged in
+		
+		When I click "Log Out"
+		Then I should not be logged in
+		When I click "Sign In"
+		
+		When I fill in the following:
+			| Email | test.user@wavedigital.com |
+			| Password | Sekrit |
+		When I press "Login"
+		Then I should be logged in
+		
+		When I click "My Details"
+		Then the "First Name" field should contain "Test"
+		Then the "Last name" field should contain "User"
+		Then the "Email" field should contain "test.user@wavedigital.com"
+		Then the "Phone number" field should contain "5012 3456"
 
 	# Logged in User
 
