@@ -100,6 +100,34 @@ Feature: Streamlined Checkout Works
 		
 		When I end a paypal test
 
+	Scenario: I can cancel a PayPal purchase
+		When I start a paypal test
+		When I start a behavioural test
+
+		When I check out a listing
+		Then I should not be logged in
+
+		When I choose "Pay by PayPal"
+		When I fill in the following:
+			| First Name | Test |
+			| Last Name | User |
+			| Password | Sekrit |
+			| Email | test.user@wavedigital.com |
+			| Phone | 5012 3456 |
+		When I press "Pay Now"
+		Then I should see no errors
+		Then I should be logged in
+		Then I should see "Payment Method and Billing Information"
+
+		When I press "Make PayPal Purchase"
+		Then I should see "Choose a way to pay"
+
+		When I cancel a PayPal purchase
+		Then I should see "Payment Details"
+		Then I should see "You cancelled your PayPal purchase, Please try again"
+
+		When I end a paypal test
+
 	Scenario: I cannot steal another account
 		When I start a behavioural test
 
@@ -330,8 +358,6 @@ Feature: Streamlined Checkout Works
 		When I complete a PayPal purchase
 
 		# This will cause a dialog to appear if not running on secure test server
-
-		Then I Debug
 
 		Then I should be logged in
 		Then I should see "Congratulations"
