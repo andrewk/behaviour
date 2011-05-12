@@ -3,4 +3,26 @@ TESTING_URL = 'http://unbooked.vm'
 VENDOR_USERNAME = 'someone+vendor@gmail.com'
 VENDOR_PASSWORD = 'password'
 
+#NOTE: Test PayPal purchase must be for $2.50
+
+# Your PayPal Sandbox Developer Acccount
+PAYPAL_DEVELOPER_USERNAME = '' # Your sandbox account email address
+PAYPAL_DEVELOPER_PASSWORD = '' # Your sandbox account password
+
+# Store Name included in all return links
+# This is usually in the format "PayPal Developer Name"'s Test Store
+PAYPAL_STORE_NAME = "" # e.g Ben Morrall's Test Store
+
+# User that makes all test PayPal Payments
+# User must be from 'Australia'
+# User must have a PayPal balance (try $9999)
+# User must have Review Purchases Disabled
+PAYPAL_TEST_USERNAME = '' # Your fake user email address
+PAYPAL_TEST_PASSWORD = '' # Your fake user password
+
+# PayPal Merchant Account
+# You must create a Sandbox Merchant/Seller Account 
+# The Merchant must be from 'Australia'
+# Set the Config setting 'paypal.testmerchant' to the email address in your Unbooked config.php file
+
 Capybara.app_host = TESTING_URL # Do not delete
