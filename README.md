@@ -8,8 +8,6 @@ Configuration
 
 Copy `features/support/local.rb.default` to `features/support/local.rb` and edit that file as needed.
 
-Copy `features/paypal_steps.rb.default` to `features/paypal_steps.rb` and edit that file as needed.
-
 Configuration of Unbooked
 -------------------------
 
