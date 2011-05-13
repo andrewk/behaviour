@@ -83,6 +83,7 @@ Feature: Streamlined Checkout Works
 		# This will cause a dialog to appear if not running on secure test server
 
 		Then I should be logged in
+		Then I Debug
 		Then I should see "Congratulations"
 		Then I should see "USER, Test"
 		Then I should see "test.user@wavedigital.com"
@@ -235,7 +236,7 @@ Feature: Streamlined Checkout Works
 		Then the "First Name" field should contain "Test"
 		Then the "Last name" field should contain "User"
 		Then the "Email" field should contain "test.user@wavedigital.com"
-		Then the "Phone number" field should contain "5012 3456"
+		Then the "Phone Number" field should contain "5012 3456"
 		
 	Scenario: I will not lose my Purchase when I reload
 		When I start a behavioural test
