@@ -31,6 +31,7 @@ Feature: Streamlined Checkout Works
 		Then I should see "Order Summary" within "#supportingContentCol"
 		Then I should see "Advertisting on home page" within "#supportingContentCol"
 		Then I should see "SitePoint" within "#supportingContentCol"
+		Then I should see "$2.50" within "#supportingContentCol"
 		Then I should see "Fri 01 Apr, 11:00am" within "#supportingContentCol"
 		Then I should see "Sat 02 Apr, 11:00am" within "#supportingContentCol"
 		
@@ -254,6 +255,7 @@ Feature: Streamlined Checkout Works
 		Then I should see "Order Summary" within "#supportingContentCol"
 		Then I should see "Advertisting on home page" within "#supportingContentCol"
 		Then I should see "SitePoint" within "#supportingContentCol"
+		Then I should see "$2.50" within "#supportingContentCol"
 		Then I should see "Fri 01 Apr, 11:00am" within "#supportingContentCol"
 		Then I should see "Sat 02 Apr, 11:00am" within "#supportingContentCol"
 		Then I should see "Account Login"
@@ -279,6 +281,7 @@ Feature: Streamlined Checkout Works
 		Then I should see "Order Summary" within "#supportingContentCol"
 		Then I should see "Advertisting on home page" within "#supportingContentCol"
 		Then I should see "SitePoint" within "#supportingContentCol"
+		Then I should see "$2.50" within "#supportingContentCol"
 		Then I should see "Fri 01 Apr, 11:00am" within "#supportingContentCol"
 		Then I should see "Sat 02 Apr, 11:00am" within "#supportingContentCol"
 		Then I should not see "Account Login"
@@ -315,6 +318,7 @@ Feature: Streamlined Checkout Works
 		Then I should see "Order Summary" within "#supportingContentCol"
 		Then I should see "Advertisting on home page" within "#supportingContentCol"
 		Then I should see "SitePoint" within "#supportingContentCol"
+		Then I should see "$2.50" within "#supportingContentCol"
 		Then I should see "Fri 01 Apr, 11:00am" within "#supportingContentCol"
 		Then I should see "Sat 02 Apr, 11:00am" within "#supportingContentCol"
 		
